@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Discord announce</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+<body>
+    <div class="send-embed">
+        <h1>Discord Advert</h1>
+        <div class="form">
+            <input type="text" class="title" placeholder="Title" id="title">
+            <input type="text" class="content" placeholder="Content" id="content">
+            <input type="text" class="color" placeholder="Color (#00000)" id="color">
+            <input type="button" class="submit" name="submit" id="submit" value="Submit">
+        </div>
+    </div>
+</body>
+<script>
+    document.getElementById('submit').onclick = function() {
+        var title = document.getElementById("title").value;
+        var content = document.getElementById("content").value;
+        var color = document.getElementById("color").value;
+
+        $.ajax({
+            type: "POST",
+            url: "/api",
+            data: {title: title, content: content, color: color},
+            success: function(data) {
+                console.log(data);
+            },
+            dataType: 'application/json'
+        });
+    }
+</script>
+</html>
